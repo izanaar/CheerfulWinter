@@ -1,0 +1,21 @@
+{
+  "name": "CheerfulWinter",
+  "homepage": "https://github.com/theIerus/CheerfulWinter",
+  "authors": [
+    "traum <theierus@gmail.com>"
+  ],
+  "description": "Simple tool to not forget translated words",
+  "main": "CheerfulWinterApplication.java",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-material": "~1.0.7"
+  }
+}

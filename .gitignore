@@ -4,3 +4,4 @@ mvnw.cmd
 .mvn
 target
 CheerfulWinter.iml
+src/main/resources/static/bower_components
