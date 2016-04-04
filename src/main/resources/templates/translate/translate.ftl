@@ -1,8 +1,16 @@
 <div layout="row" layout-padding="10px">
     <div flex-gt-xs="50">
-        <div layout="row">
-            <span flex="33" class="md-subhead">Source language:</span>
-
+        <div layout="row" layout-wrap>
+            <md-input-container class="input-container-flat" flex="noshrink" layout="row">
+                <md-select placeholder="Source language" ng-model="user" md-on-open="loadUsers()">
+                    <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="input-container-flat" flex="none">
+                <md-button class="md-raised md-primary">
+                    Translate
+                </md-button>
+            </md-input-container>
         </div>
 
         <md-input-container class="md-block">
@@ -12,13 +20,14 @@
     </div>
 
     <div flex-gt-xs="50">
-        <div layout="row">
-            <span flex="33" class="md-subhead">Destination language:</span>
-
-        </div>
+        <md-input-container class="input-container-flat" flex="noshrink">
+            <md-select placeholder="Destination language" ng-model="user" md-on-open="loadUsers()">
+                <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+            </md-select>
+        </md-input-container>
         <md-input-container class="md-block">
-            <label>Translation</label>
-            <textarea ng-model="user.biography" md-maxlength="150" md-select-on-focus=""></textarea>
+            <label>Translated</label>
+            <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
         </md-input-container>
     </div>
 </div>
