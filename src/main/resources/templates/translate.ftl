@@ -22,7 +22,6 @@
 </md-toolbar>
 
 <div flex layout="row">
-
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
         <md-list>
             <md-list-item>
@@ -42,32 +41,21 @@
         </md-list>
     </md-sidenav>
 
-    <md-content flex id="content">
-        <div ng-cloak="" class="gridListdemoBasicUsage">
-            <md-grid-list md-cols="2" md-row-height="2:1">
+    <md-content flex layout="row" id="content" layout-wrap>
 
-                <md-grid-tile>
-                    <div layout="column" layout-fill>
-                        <md-input-container>
-                            <label>Text to translate</label>
-                            <textarea ng-model="toTranslate" md-maxlength="250" rows="5"
-                                      md-select-on-focus=""></textarea>
-                        </md-input-container>
-                    </div>
-                </md-grid-tile>
-
-                <md-grid-tile>
-                    <div layout="column" layout-fill>
-                        <md-input-container>
-                            <label>Translated text</label>
-                            <textarea ng-model="translated" rows="5"
-                                      md-select-on-focus=""></textarea>
-                        </md-input-container>
-                    </div>
-                </md-grid-tile>
-
-            </md-grid-list>
+        <div flex="50">
+            <md-input-container layout="row" class="md-block">
+                <label>Biography</label>
+                <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
         </div>
+        <div flex="50">
+            <md-input-container layout="row" class="md-block">
+                <label>Biography</label>
+                <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+            </md-input-container>
+        </div>
+
 
         <!--
         Copyright 2016 Google Inc. All Rights Reserved.
