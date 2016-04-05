@@ -16,7 +16,7 @@
             </div>
             <div layout="row" flex="50" layout-align="start center">
                 <md-input-container class="input-container-flat" flex="noshrink" layout="row">
-                    <md-select placeholder="Source language" ng-model="user" md-on-open="loadUsers()">
+                    <md-select placeholder="Destination language" ng-model="user" md-on-open="loadUsers()" style="height: 48px">
                         <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -32,7 +32,7 @@
             </div>
             <div flex>
                 <md-input-container class="md-block">
-                    <label>Source text</label>
+                    <label>Translated text</label>
                     <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
                 </md-input-container>
             </div>
