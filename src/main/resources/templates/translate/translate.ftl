@@ -4,7 +4,7 @@
         <div flex layout="row">
             <div layout="row" flex="50">
                 <md-input-container class="input-container-flat" flex="noshrink" layout="row">
-                    <md-select placeholder="Source language" ng-model="user" md-on-open="loadUsers()">
+                    <md-select placeholder="Translation language" ng-model="user" md-on-open="loadUsers()">
                         <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>

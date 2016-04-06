@@ -4,22 +4,26 @@ import com.izanaar.dto.Translation;
 import com.izanaar.service.TranslateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.websocket.server.PathParam;
+
 @Controller
-@RequestMapping("/translate")
+@RequestMapping("/translation")
 public class TranslateController {
 
     @Autowired
     private TranslateService translateService;
 
-    @RequestMapping("/")
+    @RequestMapping("/page_template")
     public String index() {
         return "translate/translate";
+    }
+
+    @RequestMapping(value = "/translate_get", method = RequestMethod.GET)
+    public @ResponseBody Translation translate2(){
+        return new Translation(translateService.translate("involves"));
     }
 
     @RequestMapping(value = "/translate", method = RequestMethod.POST)

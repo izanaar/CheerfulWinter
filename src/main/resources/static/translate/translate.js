@@ -4,7 +4,7 @@ angular.module('translateApp.translate', ['ngRoute'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/translate', {
-            templateUrl: '/translate/',
+            templateUrl: '/translation/page_template',
             controller: 'TranslateCtrl'
         });
     }])
