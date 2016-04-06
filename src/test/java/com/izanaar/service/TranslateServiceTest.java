@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class TranslateServiceTest {
 
 
+
     @Before
     public void setUp() throws Exception {
 
