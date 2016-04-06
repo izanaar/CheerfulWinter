@@ -38,7 +38,7 @@ public class TranslateControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(translateController).build();
-        when(translateService.translate(textToTranslate)).thenReturn(translatedText);
+        //when(translateService.translate(textToTranslate)).thenReturn(translatedText);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TranslateControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("translation2").value(translatedText));
+                .andExpect(jsonPath("translation").value(translatedText));
 
     }
 

@@ -13,9 +13,6 @@ import javax.websocket.server.PathParam;
 @RequestMapping("/translation")
 public class TranslateController {
 
-    @Autowired
-    private TranslateService translateService;
-
     @RequestMapping("/page_template")
     public String index() {
         return "translate/translate";
@@ -23,11 +20,11 @@ public class TranslateController {
 
     @RequestMapping(value = "/translate_get", method = RequestMethod.GET)
     public @ResponseBody Translation translate2(){
-        return new Translation(translateService.translate("involves"));
+        return null;
     }
 
     @RequestMapping(value = "/translate", method = RequestMethod.POST)
     public @ResponseBody Translation translate(@RequestBody String textToTranslate){
-        return new Translation(translateService.translate(textToTranslate));
+       return null;
     }
 }
