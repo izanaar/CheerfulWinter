@@ -1,5 +1,6 @@
 package com.izanaar.web.translate;
 
+import com.izanaar.dto.Translation;
 import com.izanaar.service.TranslateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class TranslateController {
     }
 
     @RequestMapping(value = "/translate", method = RequestMethod.POST)
-    public @ResponseBody String translate(@RequestBody String textToTranslate){
-        return null;
+    public @ResponseBody Translation translate(@RequestBody String textToTranslate){
+        return new Translation(translateService.translate(textToTranslate));
     }
 }
