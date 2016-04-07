@@ -54,4 +54,13 @@ public class DictionaryAPI {
             e.printStackTrace();
         }
     }
+
+    public void lookup(String text){
+        final String uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
+                .queryParam("key", apiKey)
+                .queryParam("lang", "en-ru")
+                .queryParam("text", text).toUriString();
+
+
+    }
 }
