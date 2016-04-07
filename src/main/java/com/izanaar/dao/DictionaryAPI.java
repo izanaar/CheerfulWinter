@@ -11,10 +11,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DictionaryAPI {
@@ -28,7 +27,7 @@ public class DictionaryAPI {
 
     private final String apiUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 
-    private Map<String, HashSet<String>> directions;
+    private Map<String, Set<String>> directions;
 
     @PostConstruct
     public void initTranslationDirections(){
@@ -40,23 +39,19 @@ public class DictionaryAPI {
         try {
             HttpEntity<String[]> langs = new RestTemplate().getForEntity(uriBuilder.toUriString(), String[].class);
 
-            directions = new HashMap<>();
-            Arrays.stream(langs.getBody()).forEach(this::addDirection);
-
+            directions = Arrays.stream(langs.getBody()).collect(
+                    Collectors.toMap(
+                            s -> s.substring(0, s.indexOf('-')),
+                            s -> Collections.singleton(s.substring(s.indexOf('-') + 1)),
+                            (exst,newv) ->{
+                                Set<String> mrgd = new HashSet<>(exst);
+                                mrgd.addAll(newv);
+                                return mrgd;
+                            }
+                    )
+            );
         } catch (RestClientException e) {
             e.printStackTrace();
         }
-    }
-
-    private void addDirection(String direction){
-        int hypenIndex = direction.indexOf('-');
-        String key = direction.substring(0,hypenIndex),
-                value = direction.substring(hypenIndex + 1);
-
-        if(!directions.containsKey(key)){
-            directions.put(key, new HashSet<>());
-        }
-
-        directions.get(key).add(value);
     }
 }
