@@ -66,14 +66,16 @@ public class DictionaryAPI {
         }
     }
 
-    public void lookup(String text) throws IOException {
+    public void lookup(String text) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .queryParam("key", "2515")
+                .queryParam("key", apiKey)
                 .queryParam("lang", "en-ru")
                 .queryParam("text",text);
         try {
             String genreJson = IOUtils.toString(uriBuilder.build().toUri());
             JSONObject json = new JSONObject(genreJson);
+            JSONArray defs = json.getJSONArray("def");
+            int k = 2;
         } catch (IOException e) {
             e.printStackTrace();
         }
