@@ -1,16 +1,10 @@
 package com.izanaar.dao;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izanaar.dto.translate.DicResult;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-@Service
+@Repository
 public class DictionaryAPI {
 
     @Value("${yandex.dictionary.key}")
@@ -30,8 +24,7 @@ public class DictionaryAPI {
     private String apiKey;
 
     @Autowired
-    private ApplicationContext applicationContext;
-
+    private RestTemplateProvider restTemplateProvider;
 
     private final String apiUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 
@@ -42,10 +35,9 @@ public class DictionaryAPI {
         final String url = "https://dictionary.yandex.net/api/v1/dicservice.json/getLangs";
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url)
             .queryParam("key", apiKey);
-        System.out.println(uriBuilder.toUriString());
 
         try {
-            HttpEntity<String[]> langs = new RestTemplate().getForEntity(uriBuilder.toUriString(), String[].class);
+            HttpEntity<String[]> langs = restTemplateProvider.getRestTemplate().getForEntity(uriBuilder.toUriString(), String[].class);
 
             directions = Arrays.stream(langs.getBody()).collect(
                     Collectors.toMap(
@@ -59,13 +51,13 @@ public class DictionaryAPI {
                     )
             );
 
-            lookup("table");
         } catch (RestClientException e) {
+            directions = null;
             e.printStackTrace();
         }
     }
 
-    public void lookup(String text) {
+    public Optional<String> lookup(String text) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .queryParam("key", apiKey)
                 .queryParam("lang", "en-ru")
@@ -73,20 +65,23 @@ public class DictionaryAPI {
                 .queryParam("text",text);
 
         try {
-            RestTemplate restTemplate = new RestTemplate();
+            RestTemplate restTemplate = restTemplateProvider.getRestTemplate();
 
             HttpEntity<String> response = restTemplate.getForEntity(uriBuilder.toUriString(), String.class);
 
-            ObjectMapper mapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
-            try {
-                DicResult result = mapper.readValue(response.getBody(), DicResult.class);
-                int l = 2;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            return Optional.ofNullable(response.getBody());
         } catch (RestClientException | JSONException e) {
             e.printStackTrace();
+            return Optional.empty();
         }
     }
+
+    public Optional<Set<String>> getDirections(){
+        return Optional.ofNullable(directions.keySet());
+    }
+
+    public Optional<Set<String>> getDirectionsForLang(String lang){
+        return Optional.ofNullable(directions.get(lang));
+    }
+
 }
