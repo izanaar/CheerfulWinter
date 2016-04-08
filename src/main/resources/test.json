@@ -2,85 +2,246 @@
   "head": {},
   "def": [
     {
-      "text": "text",
-      "pos": "noun",
-      "ts": "tekst",
+      "text": "time",
+      "pos": "существительное",
+      "ts": "taɪm",
       "tr": [
         {
-          "text": "текст",
+          "text": "время",
           "pos": "существительное",
-          "gen": "м",
+          "gen": "ср",
+          "syn": [
+            {
+              "text": "раз",
+              "pos": "существительное",
+              "gen": "м"
+            },
+            {
+              "text": "момент",
+              "pos": "существительное",
+              "gen": "м"
+            },
+            {
+              "text": "срок",
+              "pos": "существительное",
+              "gen": "м"
+            },
+            {
+              "text": "пора",
+              "pos": "существительное"
+            },
+            {
+              "text": "период",
+              "pos": "существительное",
+              "gen": "м"
+            }
+          ],
           "mean": [
             {
-              "text": "wording"
+              "text": "period"
+            },
+            {
+              "text": "once"
+            },
+            {
+              "text": "moment"
+            },
+            {
+              "text": "pore"
             }
           ],
           "ex": [
             {
-              "text": "plain text",
+              "text": "time of departure",
               "tr": [
                 {
-                  "text": "обычный текст"
+                  "text": "время вылета"
+                }
+              ]
+            },
+            {
+              "text": "times per second",
+              "tr": [
+                {
+                  "text": "раза в секунду"
+                }
+              ]
+            },
+            {
+              "text": "time of publication",
+              "tr": [
+                {
+                  "text": "момент публикации"
+                }
+              ]
+            },
+            {
+              "text": "reasonable time",
+              "tr": [
+                {
+                  "text": "разумный срок"
+                }
+              ]
+            },
+            {
+              "text": "time to retire",
+              "tr": [
+                {
+                  "text": "пора на пенсию"
+                }
+              ]
+            },
+            {
+              "text": "time of conflict",
+              "tr": [
+                {
+                  "text": "период конфликта"
                 }
               ]
             }
           ]
         },
         {
-          "text": "тема",
-          "pos": "существительное",
-          "gen": "ж",
-          "mean": [
-            {
-              "text": "theme"
-            }
-          ]
-        },
-        {
-          "text": "учебник",
+          "text": "час",
           "pos": "существительное",
           "gen": "м",
           "mean": [
             {
-              "text": "textbook"
+              "text": "hour"
+            }
+          ],
+          "ex": [
+            {
+              "text": "checkout time",
+              "tr": [
+                {
+                  "text": "расчетный час"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "эпоха",
+          "pos": "существительное",
+          "gen": "ж",
+          "mean": [
+            {
+              "text": "era"
+            }
+          ]
+        },
+        {
+          "text": "век",
+          "pos": "существительное",
+          "gen": "м",
+          "mean": [
+            {
+              "text": "age"
+            }
+          ]
+        },
+        {
+          "text": "такт",
+          "pos": "существительное",
+          "gen": "м",
+          "syn": [
+            {
+              "text": "темп",
+              "pos": "существительное",
+              "gen": "м"
+            }
+          ],
+          "mean": [
+            {
+              "text": "cycle"
+            },
+            {
+              "text": "rate"
+            }
+          ]
+        },
+        {
+          "text": "жизнь",
+          "pos": "существительное",
+          "gen": "ж",
+          "mean": [
+            {
+              "text": "life"
             }
           ]
         }
       ]
     },
     {
-      "text": "text",
-      "pos": "adjective",
-      "ts": "tekst",
+      "text": "time",
+      "pos": "глагол",
+      "ts": "taɪm",
       "tr": [
         {
-          "text": "текстовый",
+          "text": "приурочивать",
+          "pos": "глагол",
+          "asp": "несов"
+        },
+        {
+          "text": "рассчитывать",
+          "pos": "глагол",
+          "asp": "несов",
+          "mean": [
+            {
+              "text": "count"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "time",
+      "pos": "прилагательное",
+      "ts": "taɪm",
+      "tr": [
+        {
+          "text": "временный",
           "pos": "прилагательное",
           "syn": [
             {
-              "text": "текстовой",
+              "text": "временной",
               "pos": "прилагательное"
             }
           ],
           "mean": [
             {
-              "text": "textual"
+              "text": "temporary"
             }
           ],
           "ex": [
             {
-              "text": "text message",
+              "text": "time frames",
               "tr": [
                 {
-                  "text": "текстовое сообщение"
+                  "text": "временные периоды"
                 }
               ]
             },
             {
-              "text": "text editor",
+              "text": "time interval",
               "tr": [
                 {
-                  "text": "текстовой редактор"
+                  "text": "временной интервал"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "повременный",
+          "pos": "прилагательное",
+          "ex": [
+            {
+              "text": "time payment",
+              "tr": [
+                {
+                  "text": "повременная оплата"
                 }
               ]
             }

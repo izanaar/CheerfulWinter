@@ -1,8 +1,11 @@
 package com.izanaar.dao;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izanaar.dto.translate.DicResult;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -15,13 +18,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
 
 
 @Service
@@ -33,6 +31,7 @@ public class DictionaryAPI {
 
     @Autowired
     private ApplicationContext applicationContext;
+
 
     private final String apiUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 
@@ -60,7 +59,7 @@ public class DictionaryAPI {
                     )
             );
 
-            lookup("text");
+            lookup("table");
         } catch (RestClientException e) {
             e.printStackTrace();
         }
@@ -70,16 +69,24 @@ public class DictionaryAPI {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .queryParam("key", apiKey)
                 .queryParam("lang", "en-ru")
+                .queryParam("ui","ru")
                 .queryParam("text",text);
+
         try {
-            String genreJson = IOUtils.toString(uriBuilder.build().toUri());
-            JSONObject json = new JSONObject(genreJson);
-            JSONArray defs = json.getJSONArray("def");
-            int k = 2;
-        } catch (IOException e) {
+            RestTemplate restTemplate = new RestTemplate();
+
+            HttpEntity<String> response = restTemplate.getForEntity(uriBuilder.toUriString(), String.class);
+
+            ObjectMapper mapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+            try {
+                DicResult result = mapper.readValue(response.getBody(), DicResult.class);
+                int l = 2;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (RestClientException | JSONException e) {
             e.printStackTrace();
         }
-
-
     }
 }
