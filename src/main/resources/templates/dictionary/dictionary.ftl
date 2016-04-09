@@ -30,10 +30,10 @@
     <div flex="50" layout-padding class="md-whiteframe-2dp panel" layout="column">
 
         <div layout="column" ng-repeat="definition in translation.def">
-            <div>{{$index + 1}} {{definition.text}} {{definition.pos}}:</div>
+            <div>{{$index + 1}} {{definition.text}} <span style="font-style: italic;">({{definition.pos}})</span>:</div>
             <div flex-offset="5" ng-repeat="translation in definition.tr">
-                {{translation.text}} <span ng-show="translation.gen !== null">({{translation.gen}})
-            </span>
+                {{translation.text}}
+                <span ng-show="translation.gen !== null">({{translation.gen}})</span>
             </div>
         </div>
 

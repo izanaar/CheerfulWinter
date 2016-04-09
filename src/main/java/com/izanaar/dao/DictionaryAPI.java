@@ -48,9 +48,9 @@ public class DictionaryAPI {
     }
 
     private void initDirections(String[] body) {
-        directions = Arrays.stream(body).collect(
+        directions = Arrays.stream(body).sorted().collect(
                 Collectors.toMap(
-                        s -> s.substring(0, s.indexOf('-')),
+                        this::resolveCountryName,
                         s -> Collections.singleton(s.substring(s.indexOf('-') + 1)),
                         (exst,newv) ->{
                             Set<String> mrgd = new HashSet<>(exst);
@@ -59,6 +59,14 @@ public class DictionaryAPI {
                         }
                 )
         );
+
+    }
+
+    private String resolveCountryName(String entry){
+        String code = entry.substring(0, entry.indexOf('-'));
+        String language = new Locale(code).getDisplayLanguage();
+       // System.out.println(code + "-" + language);
+        return code;
     }
 
     public Optional<String> lookup(String text, String src, String dst) {
@@ -77,7 +85,7 @@ public class DictionaryAPI {
     private String buildLookupUri(String text, String src, String dst) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(lookupUrl)
                 .queryParam("key", apiKey)
-                .queryParam("lang", src + "-" + dst)
+                .queryParam("lang", new Locale(src).getLanguage() + "-" + dst)
                 .queryParam("ui","ru")
                 .queryParam("text", text);
 
