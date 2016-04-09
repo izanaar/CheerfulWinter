@@ -1,5 +1,6 @@
 package com.izanaar.web.translate;
 
+import com.izanaar.dto.translate.DicResult;
 import com.izanaar.service.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,12 @@ public class DictionaryController {
     @RequestMapping("/trn_langs")
     public @ResponseBody Set<String> getTrnLangs(@RequestParam String src){
         return dictionary.getTranslationLanguages(src);
+    }
+
+    @RequestMapping("/lookup")
+    public @ResponseBody
+    DicResult lookup(String text, String src, String dst){
+        return dictionary.translateWord(text, src, dst);
     }
 
 }
