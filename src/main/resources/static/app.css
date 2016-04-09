@@ -35,4 +35,6 @@ md-list-item > button {
 
 .panel{
   background-color: white;
+  margin:10px 5px 10px 5px;
+  padding: 5px;
 }
