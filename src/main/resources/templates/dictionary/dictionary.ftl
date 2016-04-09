@@ -28,24 +28,13 @@
     </div>
 
     <div flex="50" layout-padding class="md-whiteframe-2dp panel" layout="column">
-    <#--<div layout="row">
-        <div flex="100" ng-repeat="definition in translation.def" layout="row">
-            <div flex="100">{{$index + 1}} {{definition.text}}{{definition.pos}}:</div>
-            &lt;#&ndash;<div ng-repeat="translation in definition.tr" flex="100">
 
-                {{translation.text}}({{translation.pos}}, {{translation.gen}}
-
+        <div layout="column" ng-repeat="definition in translation.def">
+            <div>{{$index + 1}} {{definition.text}} {{definition.pos}}:</div>
+            <div flex-offset="5" ng-repeat="translation in definition.tr">
+                {{translation.text}} <span ng-show="translation.gen !== null">({{translation.gen}})
+            </span>
             </div>
-            <hr>&ndash;&gt;
-        </div>
-    </div>-->
-        <div flex style="background-color: crimson" layout="column">
-            <div flex-offset="5" style="background-color: green"> tr1 </div>
-            <div flex-offset="5" style="background-color: blue">tr2 </div>
-        </div>
-        <div flex style="background-color: gold">
-            <div flex-offset="5" style="background-color: green">tr3</div>
-            <div flex-offset="5" style="background-color: green">tr4</div>
         </div>
 
     </div>
