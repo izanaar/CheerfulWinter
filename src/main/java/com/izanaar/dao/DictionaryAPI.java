@@ -61,11 +61,11 @@ public class DictionaryAPI {
         );
     }
 
-    public Optional<String> lookup(String text) {
+    public Optional<String> lookup(String text, String src, String dst) {
         try {
             RestTemplate restTemplate = restTemplateProvider.getRestTemplate();
 
-            HttpEntity<String> response = restTemplate.getForEntity(buildLookupUri(text), String.class);
+            HttpEntity<String> response = restTemplate.getForEntity(buildLookupUri(text, src, dst), String.class);
             return Optional.ofNullable(response.getBody());
 
         } catch (RestClientException | JSONException e) {
@@ -74,10 +74,10 @@ public class DictionaryAPI {
         }
     }
 
-    private String buildLookupUri(String text) {
+    private String buildLookupUri(String text, String src, String dst) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(lookupUrl)
                 .queryParam("key", apiKey)
-                .queryParam("lang", "en-ru")
+                .queryParam("lang", src + "-" + dst)
                 .queryParam("ui","ru")
                 .queryParam("text", text);
 

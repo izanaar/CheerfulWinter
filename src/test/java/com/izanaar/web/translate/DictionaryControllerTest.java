@@ -2,6 +2,8 @@ package com.izanaar.web.translate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izanaar.dao.DictionaryAPI;
+import com.izanaar.dto.translate.Definition;
+import com.izanaar.dto.translate.DicResult;
 import com.izanaar.service.Dictionary;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,10 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -31,6 +30,9 @@ public class DictionaryControllerTest {
     String srcLang = "ru";
     Set<String> translationLangs;
 
+    String wordToTranslate = "table";
+    DicResult translation;
+
     @Mock
     Dictionary dictionary;
 
@@ -44,10 +46,29 @@ public class DictionaryControllerTest {
         MockitoAnnotations.initMocks(this);
         controller = MockMvcBuilders.standaloneSetup(dictionaryController).build();
 
+        initMocksForGettingTranslationLangs();
+        initMocksForLookup();
+    }
+
+    private void initMocksForGettingTranslationLangs() {
         translationLangs = Arrays.stream(new String[]{"en", "uk"}).collect(Collectors.toSet());
 
         when(dictionary.getTranslationLanguages(anyString())).thenReturn(Collections.emptySet());
         when(dictionary.getTranslationLanguages(srcLang)).thenReturn(translationLangs);
+    }
+
+    private void initMocksForLookup() {
+
+        translation = new DicResult();
+
+        Definition definition = new Definition();
+        definition.setText("стол");
+
+        translation.setDefinitions(new Definition[]{definition});
+
+
+        when(dictionary.translateWord(anyString(), anyString(), anyString())).thenReturn(new DicResult());
+        when(dictionary.translateWord("table", "en", "ru")).thenReturn(translation);
     }
 
     @Test
@@ -58,6 +79,17 @@ public class DictionaryControllerTest {
     @Test
     public void getSrcLangs() throws Exception {
 
+    }
+
+    @Test
+    public void lookup() throws Exception {
+        controller
+                .perform(get("/dictionary/lookup")
+                        .param("text", "table")
+                        .param("src", "en")
+                        .param("dst", "ru"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(new ObjectMapper().writeValueAsString(translation)));
     }
 
     @Test
