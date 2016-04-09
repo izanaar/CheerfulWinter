@@ -9,16 +9,17 @@
 
 <#include "commonDependencies.ftl">
 
+    <link rel="stylesheet" href="app.css"/>
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="app.css"/>
 
 </head>
 
 <body ng-app="translateApp" layout="column">
 
-<md-toolbar layout="row">
-    <h2>Translate and not forget</h2>
+<md-toolbar layout="row" layout-align="end center">
+    <h2 flex="none" layout-margin>Translate and not forget</h2>
+    <h6 flex="noshrink" layout-margin style="text-align: right">Powered by Yandex</h6>
 </md-toolbar>
 
 <div flex layout="row">
@@ -48,7 +49,8 @@
         </md-list>
     </md-sidenav>
 
-    <md-content flex ng-view id="content">
+    <md-content flex ng-view class="bkgrnd">
+
     </md-content>
 
 </div>

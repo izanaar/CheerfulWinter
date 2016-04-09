@@ -19,12 +19,20 @@ md-list-item > button {
 }
 
 #content  {
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+ /* padding-top: 5px;*/
 }
 
 .input-container-flat{
    margin-top: 5px !important;
    margin-bottom: 5px !important;
+}
+
+.bkgrnd {
+  background-color: rgba(245, 230, 211, 0.51);
+}
+
+.panel{
+  background-color: white;
 }
