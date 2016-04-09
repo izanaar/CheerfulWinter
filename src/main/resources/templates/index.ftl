@@ -18,8 +18,8 @@
 <body ng-app="translateApp" layout="column">
 
 <md-toolbar layout="row" layout-align="end center">
-    <h2 flex="none" layout-margin>Translate and not forget</h2>
-    <h6 flex="noshrink" layout-margin style="text-align: right">Powered by Yandex</h6>
+    <h2 flex="none" class="md-display-2" layout-margin>Translate and not forget</h2>
+    <h6 flex="noshrink" class="md-subhead" layout-margin style="text-align: right">Powered by Yandex</h6>
 </md-toolbar>
 
 <div flex layout="row">

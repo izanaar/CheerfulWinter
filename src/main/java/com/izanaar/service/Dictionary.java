@@ -2,6 +2,7 @@ package com.izanaar.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.izanaar.dao.DictionaryAPI;
 import com.izanaar.dto.translate.DicResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class Dictionary {
     public DicResult translateWord(String word, String src, String dst) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         String responseJson = dictionaryAPI.lookup(word, src, dst).orElse("");//TODO log if fails
         try {
             return mapper.readValue(responseJson, DicResult.class);
