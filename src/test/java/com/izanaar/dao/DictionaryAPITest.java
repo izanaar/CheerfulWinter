@@ -1,17 +1,11 @@
 package com.izanaar.dao;
 
-import org.apache.el.util.ReflectionUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.ReflectionUtils;
-
-import java.lang.reflect.Field;
-
-import static org.junit.Assert.*;
 
 public class DictionaryAPITest {
 

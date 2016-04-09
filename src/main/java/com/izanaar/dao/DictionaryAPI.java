@@ -11,7 +11,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,54 +25,63 @@ public class DictionaryAPI {
     @Autowired
     private RestTemplateProvider restTemplateProvider;
 
-    private final String apiUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
+    private final String lookupUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup",
+                         langsUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/getLangs";
 
     private Map<String, Set<String>> directions;
 
     @PostConstruct
-    public void initTranslationDirections() throws IOException {
-        final String url = "https://dictionary.yandex.net/api/v1/dicservice.json/getLangs";
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url)
-            .queryParam("key", apiKey);
-
+    public void initTranslationDirections() {
         try {
-            HttpEntity<String[]> langs = restTemplateProvider.getRestTemplate().getForEntity(uriBuilder.toUriString(), String[].class);
-
-            directions = Arrays.stream(langs.getBody()).collect(
-                    Collectors.toMap(
-                            s -> s.substring(0, s.indexOf('-')),
-                            s -> Collections.singleton(s.substring(s.indexOf('-') + 1)),
-                            (exst,newv) ->{
-                                Set<String> mrgd = new HashSet<>(exst);
-                                mrgd.addAll(newv);
-                                return mrgd;
-                            }
-                    )
-            );
-
+            HttpEntity<String[]> langs = restTemplateProvider.getRestTemplate().getForEntity(buildLangsUri(), String[].class);
+            initDirections(langs.getBody());
         } catch (RestClientException e) {
-            directions = null;
+            directions = new HashMap<>();
             e.printStackTrace();
         }
     }
 
-    public Optional<String> lookup(String text) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .queryParam("key", apiKey)
-                .queryParam("lang", "en-ru")
-                .queryParam("ui","ru")
-                .queryParam("text",text);
+    private String buildLangsUri(){
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(langsUrl)
+                .queryParam("key", apiKey);
+        return uriBuilder.toUriString();
+    }
 
+    private void initDirections(String[] body) {
+        directions = Arrays.stream(body).collect(
+                Collectors.toMap(
+                        s -> s.substring(0, s.indexOf('-')),
+                        s -> Collections.singleton(s.substring(s.indexOf('-') + 1)),
+                        (exst,newv) ->{
+                            Set<String> mrgd = new HashSet<>(exst);
+                            mrgd.addAll(newv);
+                            return mrgd;
+                        }
+                )
+        );
+    }
+
+    public Optional<String> lookup(String text) {
         try {
             RestTemplate restTemplate = restTemplateProvider.getRestTemplate();
 
-            HttpEntity<String> response = restTemplate.getForEntity(uriBuilder.toUriString(), String.class);
-
+            HttpEntity<String> response = restTemplate.getForEntity(buildLookupUri(text), String.class);
             return Optional.ofNullable(response.getBody());
+
         } catch (RestClientException | JSONException e) {
             e.printStackTrace();
             return Optional.empty();
         }
+    }
+
+    private String buildLookupUri(String text) {
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(lookupUrl)
+                .queryParam("key", apiKey)
+                .queryParam("lang", "en-ru")
+                .queryParam("ui","ru")
+                .queryParam("text", text);
+
+        return uriBuilder.toUriString();
     }
 
     public Optional<Set<String>> getDirections(){

@@ -6,3 +6,4 @@
 
 <script src="app.js" type="text/javascript"></script>
 <script src="translate/translate.js" type="text/javascript"></script>
+<script src="dictionary/dictionary.js" type="text/javascript"></script>
