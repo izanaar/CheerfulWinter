@@ -3,7 +3,8 @@ angular
         'ngMaterial',
         'ngRoute',
         'translateApp.translate',
-        'translateApp.dictionary'
+        'translateApp.dictionary',
+        'translateApp.review'
     ])
     .config(function ($mdThemingProvider, $routeProvider) {
         $mdThemingProvider.theme('default')
