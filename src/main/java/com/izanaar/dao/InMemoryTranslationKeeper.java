@@ -11,6 +11,7 @@ import javax.annotation.PreDestroy;
 import javax.validation.constraints.NotNull;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Repository
@@ -22,16 +23,16 @@ public class InMemoryTranslationKeeper implements TranslationKeeper {
     @NotNull
     private String fileName;
 
-    private ArrayList<Translation> translations;
+    private Set<Translation> translations;
 
     @PostConstruct
     public void pc() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            translations = (ArrayList<Translation>) inputStream.readObject();
+            translations = (HashSet<Translation>) inputStream.readObject();
             logger.info("Translations have been read.");
         } catch (FileNotFoundException e) {
             logger.warn("Unable to read serialized translations, creating new.");
-            translations = new ArrayList<>(10);
+            translations = new HashSet<>(10);
         } catch (IOException e) {
             logger.error("Translation-contained file reading ended with an IOException: {}", e);
         } catch (ClassCastException | ClassNotFoundException e) {
@@ -53,14 +54,13 @@ public class InMemoryTranslationKeeper implements TranslationKeeper {
 
     @Override
     public void keepTranslation(Translation translation) {
-        if (!translations.contains(translation)) {
-            translations.add(translation);
+        if (!translations.add(translation)) {
             logger.debug("Saved translation: {}", translation);
         }
     }
 
     @Override
-    public Set<String> getTranslations() {
-        return null;
+    public Set<Translation> getTranslations() {
+        return translations;
     }
 }
