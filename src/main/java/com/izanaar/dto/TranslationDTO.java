@@ -1,10 +1,10 @@
 package com.izanaar.dto;
 
-public class Translation {
+public class TranslationDTO {
 
     private String translation;
 
-    public Translation(String translation) {
+    public TranslationDTO(String translation) {
         this.translation = translation;
     }
 

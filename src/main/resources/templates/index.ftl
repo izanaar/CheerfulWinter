@@ -9,9 +9,9 @@
 
 <#include "commonDependencies.ftl">
 
-    <link rel="stylesheet" href="app.css"/>
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+    <link rel='stylesheet' href='bower_components/roboto-fontface/css/roboto-fontface.css'>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="app.css"/>
 
 </head>
 

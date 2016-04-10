@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.izanaar.dao.DictionaryAPI;
+import com.izanaar.dao.TranslationKeeper;
 import com.izanaar.dto.translate.DicResult;
+import com.izanaar.model.Translation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,18 @@ public class Dictionary {
     @Autowired
     private DictionaryAPI dictionaryAPI;
 
-    public DicResult translateWord(String word, String src, String dst) {
+    @Autowired
+    private TranslationKeeper translationKeeper;
+
+    public DicResult translate(Translation translation) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-        String responseJson = dictionaryAPI.lookup(word, src, dst).orElse("");//TODO log if fails
+        String responseJson =
+                dictionaryAPI.lookup(translation.getInputText(), translation.getInputLanguage(), translation.getFinalLanguage())
+                        .orElse("");//TODO log if fails
         try {
+            translationKeeper.keepTranslation(translation);
             return mapper.readValue(responseJson, DicResult.class);
         } catch (IOException e) {
             e.printStackTrace();

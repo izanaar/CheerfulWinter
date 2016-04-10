@@ -1,23 +1,23 @@
 package com.izanaar.web.translate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izanaar.dao.DictionaryAPI;
 import com.izanaar.dto.translate.Definition;
 import com.izanaar.dto.translate.DicResult;
+import com.izanaar.model.Translation;
 import com.izanaar.service.Dictionary;
+import com.izanaar.web.DictionaryController;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -66,9 +66,10 @@ public class DictionaryControllerTest {
 
         translation.setDefinitions(new Definition[]{definition});
 
+        Translation testTranslation = new Translation("table", "en", "ru");
 
-        when(dictionary.translateWord(anyString(), anyString(), anyString())).thenReturn(new DicResult());
-        when(dictionary.translateWord("table", "en", "ru")).thenReturn(translation);
+        when(dictionary.translate(any(Translation.class))).thenReturn(new DicResult());
+        when(dictionary.translate(testTranslation)).thenReturn(translation);
     }
 
     @Test

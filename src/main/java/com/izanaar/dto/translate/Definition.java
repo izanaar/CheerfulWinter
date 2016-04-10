@@ -10,7 +10,7 @@ public class Definition {
     private String position;
 
     @JsonProperty("tr")
-    private Translation[] translations;
+    private TranslationEntry[] translationEntries;
 
     public String getText() {
         return text;
@@ -28,11 +28,11 @@ public class Definition {
         this.position = position;
     }
 
-    public Translation[] getTranslations() {
-        return translations;
+    public TranslationEntry[] getTranslationEntries() {
+        return translationEntries;
     }
 
-    public void setTranslations(Translation[] translations) {
-        this.translations = translations;
+    public void setTranslationEntries(TranslationEntry[] translationEntries) {
+        this.translationEntries = translationEntries;
     }
 }

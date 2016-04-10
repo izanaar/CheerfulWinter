@@ -38,3 +38,29 @@ md-list-item > button {
   margin:10px 5px 10px 5px;
   padding: 5px;
 }
+
+.definition{
+    padding-bottom: 5px;
+}
+
+.definition span[segment="word"]{
+    font-weight:800;
+}
+
+.definition span[segment="position"]{
+    font-weight: 300;
+    color: #7986CB;
+}
+
+.translation{
+    padding-bottom: 5px;
+}
+
+.translation span[segment="text"]{
+    color: #26A69A;
+}
+
+.translation span[segment="gender"]{
+    font-size: .85em;
+    color: #B0BEC5;
+}

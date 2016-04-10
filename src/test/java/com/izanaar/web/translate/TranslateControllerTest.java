@@ -1,8 +1,7 @@
 package com.izanaar.web.translate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.izanaar.dto.Translation;
 import com.izanaar.service.TranslateService;
+import com.izanaar.web.TranslateController;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -13,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

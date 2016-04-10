@@ -1,13 +1,8 @@
-package com.izanaar.web.translate;
+package com.izanaar.web;
 
-import com.izanaar.dto.Translation;
-import com.izanaar.service.TranslateService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.izanaar.dto.TranslationDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping("/translation")
@@ -19,12 +14,14 @@ public class TranslateController {
     }
 
     @RequestMapping(value = "/translate_get", method = RequestMethod.GET)
-    public @ResponseBody Translation translate2(){
+    public @ResponseBody
+    TranslationDTO translate2(){
         return null;
     }
 
     @RequestMapping(value = "/translate", method = RequestMethod.POST)
-    public @ResponseBody Translation translate(@RequestBody String textToTranslate){
+    public @ResponseBody
+    TranslationDTO translate(@RequestBody String textToTranslate){
        return null;
     }
 }

@@ -2,7 +2,7 @@ package com.izanaar.dto.translate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Translation {
+public class TranslationEntry {
 
     @JsonProperty("text")
     private String text;

@@ -1,6 +1,7 @@
-package com.izanaar.web.translate;
+package com.izanaar.web;
 
 import com.izanaar.dto.translate.DicResult;
+import com.izanaar.model.Translation;
 import com.izanaar.service.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class DictionaryController {
     @RequestMapping("/lookup")
     public @ResponseBody
     DicResult lookup(String text, String src, String dst){
-        return dictionary.translateWord(text, src, dst);
+        return dictionary.translate(new Translation(text, src, dst));
     }
 
 }
