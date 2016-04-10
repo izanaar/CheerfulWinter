@@ -1,4 +1,4 @@
-package com.izanaar.web.translate;
+package com.izanaar.web;
 
 import com.izanaar.service.TranslateService;
 import com.izanaar.web.TranslateController;

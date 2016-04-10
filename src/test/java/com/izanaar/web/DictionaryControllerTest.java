@@ -1,4 +1,4 @@
-package com.izanaar.web.translate;
+package com.izanaar.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izanaar.dto.translate.Definition;
