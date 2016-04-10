@@ -24,7 +24,7 @@ public class ReviewController {
     @RequestMapping("/translations")
     public @ResponseBody
     Set<Translation> getTranslations(){
-        return null;
+        return translationKeeper.getTranslations();
     }
 
 }

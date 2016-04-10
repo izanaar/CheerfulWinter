@@ -30,6 +30,11 @@ public class Translation implements Serializable{
     }
 
     @Override
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
+
+    @Override
     public String toString() {
         return inputText + ("(" + inputLanguage + "-" + finalLanguage + ")");
     }

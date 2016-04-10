@@ -54,7 +54,7 @@ public class InMemoryTranslationKeeper implements TranslationKeeper {
 
     @Override
     public void keepTranslation(Translation translation) {
-        if (!translations.add(translation)) {
+        if (translations.add(translation)) {
             logger.debug("Saved translation: {}", translation);
         }
     }
