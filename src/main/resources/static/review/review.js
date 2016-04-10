@@ -11,4 +11,8 @@ angular.module('translateApp.review', ['ngRoute'])
 
     .controller('ReviewCtrl', ['$scope', '$timeout', function($scope, $http) {
 
+    }])
+
+    .service('ReviewService', ['$http', function ($http) {
+                
     }]);

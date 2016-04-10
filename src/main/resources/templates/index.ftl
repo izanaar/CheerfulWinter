@@ -33,14 +33,14 @@
             </md-list-item>
 
             <md-list-item>
-                <md-button>
+                <md-button ng-href="#/dictionary">
                     <md-icon md-svg-src="icons/ic_repeat_black_48px.svg"></md-icon>
                     Dictionary
                 </md-button>
             </md-list-item>
 
             <md-list-item>
-                <md-button>
+                <md-button ng-href="#/review">
                     <md-icon md-svg-src="icons/ic_trending_up_black_48px.svg"></md-icon>
                     Review
                 </md-button>

@@ -9,7 +9,7 @@ public class ReviewController {
 
     @RequestMapping("/page_template")
     public String pageTemplate(){
-        return null;
+        return "review/review";
     }
 
 }
