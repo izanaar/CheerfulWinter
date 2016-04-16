@@ -27,21 +27,21 @@
         <md-list>
             <md-list-item>
                 <md-button>
-                    <md-icon md-svg-src="icons/ic_translate_48px.svg"></md-icon>
+                    <md-icon md-svg-src="translate"></md-icon>
                     Translate
                 </md-button>
             </md-list-item>
 
             <md-list-item>
                 <md-button ng-href="#/dictionary">
-                    <md-icon md-svg-src="icons/ic_repeat_black_48px.svg"></md-icon>
+                    <md-icon md-svg-src="dictionary"></md-icon>
                     Dictionary
                 </md-button>
             </md-list-item>
 
             <md-list-item>
                 <md-button ng-href="#/review">
-                    <md-icon md-svg-src="icons/ic_trending_up_black_48px.svg"></md-icon>
+                    <md-icon md-svg-src="review"></md-icon>
                     Review
                 </md-button>
             </md-list-item>
