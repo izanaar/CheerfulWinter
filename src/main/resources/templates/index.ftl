@@ -18,12 +18,11 @@
 <body ng-app="translateApp" layout="column">
 
 <md-toolbar layout="row" layout-align="end center">
-    <h4 flex="none" class="md-display-1" layout-margin>Translate and not forget</h4>
-    <h6 flex="noshrink" class="md-body-1" layout-margin style="text-align: right">Powered by Yandex</h6>
+    <h4 flex="none" class="md-display-1" layout-margin>Dictionary</h4>
 </md-toolbar>
 
 <div flex layout="row">
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+    <md-sidenav  md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2">
         <md-list>
             <md-list-item>
                 <md-button>
