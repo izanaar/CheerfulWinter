@@ -1,27 +1,27 @@
-<div layout="row">
+<div layout-gt-sm="row" layout="column">
 
     <div flex="50" class="md-whiteframe-2dp panel">
         <div layout="row">
-            <md-input-container class="input-container-flat" flex="noshrink" layout="row">
-                <md-select placeholder="Source language" ng-model="srcLang" md-on-open="loadSrcLangs()">
+            <md-input-container class="input-container-flat" flex="40" layout="row">
+                <md-select placeholder="from" ng-model="srcLang" md-on-open="loadSrcLangs()">
                     <md-option ng-value="srcLang" ng-repeat="srcLang in srcLangs | orderBy:'toString()'">{{srcLang}}</md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container class="input-container-flat" flex="noshrink" layout="row">
-                <md-select placeholder="Translation language" ng-model="trnLang" md-on-open="loadTrnLangs()">
+            <md-input-container class="input-container-flat" flex="40" layout="row">
+                <md-select placeholder="to" ng-model="trnLang" md-on-open="loadTrnLangs()">
                     <md-option ng-value="trnLang" ng-repeat="trnLang in trnLangs | orderBy:'toString()'">{{trnLang}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container class="input-container-flat" flex="none">
-                <md-button class="md-raised md-primary" ng-click="translate()">
-                    Translate
+                <md-button class="md-fab md-mini md-primary" aria-label="Profile" ng-click="translate()">
+                    <md-icon md-svg-src="dictionary"></md-icon>
                 </md-button>
             </md-input-container>
         </div>
         <div>
             <div flex>
                 <md-input-container class="md-block">
-                    <textarea ng-model="sourceText" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                    <textarea ng-model="sourceText" placeholder="Type word to translate..." rows="1" md-select-on-focus=""></textarea>
                 </md-input-container>
             </div>
         </div>

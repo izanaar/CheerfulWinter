@@ -18,8 +18,8 @@
 <body ng-app="translateApp" layout="column" ng-controller="IndexCtrl">
 
 <md-toolbar layout="row" layout-align="start center">
-    <md-button ng-click="openMenu()" aria-label="Menu" hide-gt-md>
-        <md-icon md-svg-src="menu"></md-icon>
+    <md-button ng-click="openMenu()" class="md-icon-button md-primary" aria-label="Menu" hide-gt-md>
+        <md-icon md-svg-src="/icons/ic_menu_48px.svg" style="color:white"></md-icon>
     </md-button>
     <h4 flex="none" class="md-display-1" layout-margin>
         Dictionary
@@ -40,7 +40,7 @@
             </md-list-item>
 
             <md-list-item>
-                <md-button ng-href="#/dictionary"
+                <md-button href="#/dictionary"
                            ng-click="closeMenu()">
                     <md-icon md-svg-src="dictionary"></md-icon>
                     Dictionary
