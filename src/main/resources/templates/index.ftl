@@ -15,31 +15,41 @@
 
 </head>
 
-<body ng-app="translateApp" layout="column">
+<body ng-app="translateApp" layout="column" ng-controller="IndexCtrl">
 
-<md-toolbar layout="row" layout-align="end center">
-    <h4 flex="none" class="md-display-1" layout-margin>Dictionary</h4>
+<md-toolbar layout="row" layout-align="start center">
+    <md-button ng-click="openMenu()" aria-label="Menu" hide-gt-md>
+        <md-icon md-svg-src="menu"></md-icon>
+    </md-button>
+    <h4 flex="none" class="md-display-1" layout-margin>
+        Dictionary
+    </h4>
 </md-toolbar>
 
 <div flex layout="row">
-    <md-sidenav  md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2">
+    <md-sidenav md-is-locked-open="$mdMedia('gt-md')"
+                md-component-id="menu"
+                class="md-whiteframe-z2">
         <md-list>
             <md-list-item>
-                <md-button>
+                <md-button
+                        ng-click="closeMenu()">
                     <md-icon md-svg-src="translate"></md-icon>
                     Translate
                 </md-button>
             </md-list-item>
 
             <md-list-item>
-                <md-button ng-href="#/dictionary">
+                <md-button ng-href="#/dictionary"
+                           ng-click="closeMenu()">
                     <md-icon md-svg-src="dictionary"></md-icon>
                     Dictionary
                 </md-button>
             </md-list-item>
 
             <md-list-item>
-                <md-button ng-href="#/review">
+                <md-button ng-href="#/review"
+                           ng-click="closeMenu()">
                     <md-icon md-svg-src="review"></md-icon>
                     Review
                 </md-button>

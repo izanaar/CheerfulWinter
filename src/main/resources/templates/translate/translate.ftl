@@ -9,7 +9,7 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container class="input-container-flat" flex="none">
-                    <md-button class="md-raised md-primary">
+                    <md-button class="md-raised md-primary" aria-label="Translate">
                         Translate
                     </md-button>
                 </md-input-container>
@@ -27,7 +27,8 @@
             <div flex>
                 <md-input-container class="md-block">
                     <label>Source text</label>
-                    <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                    <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""
+                    aria-label="SrcText"></textarea>
                 </md-input-container>
             </div>
             <div flex>
