@@ -13,8 +13,11 @@
                 </md-select>
             </md-input-container>
             <md-input-container class="input-container-flat" flex="none">
-                <md-button class="md-fab md-mini md-primary" aria-label="Profile" ng-click="translate()">
+                <md-button class="md-fab md-mini md-primary" hide-gt-xs aria-label="Profile" ng-click="translate()">
                     <md-icon md-svg-src="dictionary"></md-icon>
+                </md-button>
+                <md-button class="md-raised md-primary" hide show-gt-xs ng-click="translate()">
+                    Translate
                 </md-button>
             </md-input-container>
         </div>

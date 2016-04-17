@@ -11,7 +11,7 @@ public class Translation implements Serializable{
     }
 
     public Translation(String text, String src, String dst) {
-        inputText = text;
+        inputText = text.trim();
         inputLanguage = src;
         finalLanguage = dst;
     }

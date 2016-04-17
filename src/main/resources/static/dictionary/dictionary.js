@@ -13,12 +13,18 @@ angular.module('translateApp.dictionary', ['ngRoute'])
         $scope.loadSrcLangs = function () {
             TranslateService.getSourceLangs().then(function (response) {
                 $scope.srcLangs = response.data;
+                if(response.data.includes('en')){
+                    $scope.srcLang = 'en';
+                }
             });
         };
 
         $scope.loadTrnLangs = function () {
             TranslateService.getTranslationLagns($scope.srcLang).then(function (response) {
                 $scope.trnLangs = response.data;
+                if(response.data.includes('ru')){
+                    $scope.trnLang = 'ru';
+                }
             });
         };
 
@@ -34,78 +40,7 @@ angular.module('translateApp.dictionary', ['ngRoute'])
         $scope.trnLang = null;
         $scope.srcLang = null;
 
-        $scope.translation = {
-            "def": [
-                {
-                    "text": "time",
-                    "pos": "существительное",
-                    "tr": [
-                        {
-                            "text": "время",
-                            "pos": "существительное",
-                            "gen": "ср"
-                        },
-                        {
-                            "text": "час",
-                            "pos": "существительное",
-                            "gen": "м"
-                        },
-                        {
-                            "text": "эпоха",
-                            "pos": "существительное",
-                            "gen": "ж"
-                        },
-                        {
-                            "text": "век",
-                            "pos": "существительное",
-                            "gen": "м"
-                        },
-                        {
-                            "text": "такт",
-                            "pos": "существительное",
-                            "gen": "м"
-                        },
-                        {
-                            "text": "жизнь",
-                            "pos": "существительное",
-                            "gen": "ж"
-                        }
-                    ]
-                },
-                {
-                    "text": "time",
-                    "pos": "глагол",
-                    "tr": [
-                        {
-                            "text": "приурочивать",
-                            "pos": "глагол",
-                            "gen": null
-                        },
-                        {
-                            "text": "рассчитывать",
-                            "pos": "глагол",
-                            "gen": null
-                        }
-                    ]
-                },
-                {
-                    "text": "time",
-                    "pos": "прилагательное",
-                    "tr": [
-                        {
-                            "text": "временный",
-                            "pos": "прилагательное",
-                            "gen": null
-                        },
-                        {
-                            "text": "повременный",
-                            "pos": "прилагательное",
-                            "gen": null
-                        }
-                    ]
-                }
-            ]
-        };
+        $scope.translation = null;
     }])
 
     .service('TranslateService', ['$http', function ($http) {
