@@ -1,7 +1,7 @@
 package com.izanaar.web;
 
 import com.izanaar.dto.translate.DicResult;
-import com.izanaar.model.Translation;
+import com.izanaar.domain.Translation;
 import com.izanaar.service.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

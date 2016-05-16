@@ -6,13 +6,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.izanaar.dao.DictionaryAPI;
 import com.izanaar.dao.TranslationKeeper;
 import com.izanaar.dto.translate.DicResult;
-import com.izanaar.model.Translation;
+import com.izanaar.domain.Translation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 @Service

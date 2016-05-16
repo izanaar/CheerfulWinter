@@ -2,7 +2,7 @@ package com.izanaar.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izanaar.dao.TranslationKeeper;
-import com.izanaar.model.Translation;
+import com.izanaar.domain.Translation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

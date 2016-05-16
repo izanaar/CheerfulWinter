@@ -14,6 +14,4 @@ public class TranslateAPI {
 
     private final String apiUrl = "https://translate.yandex.net/api/v1.5/tr.json/getLangs";
 
-
-
 }

@@ -23,7 +23,7 @@ public class DictionaryAPI {
     private String apiKey;
 
     @Autowired
-    private RestTemplateProvider restTemplateProvider;
+    private RestTemplate restTemplate;
 
     private final String lookupUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup",
                          langsUrl = "https://dictionary.yandex.net/api/v1/dicservice.json/getLangs";
@@ -33,7 +33,7 @@ public class DictionaryAPI {
     @PostConstruct
     public void initTranslationDirections() {
         try {
-            HttpEntity<String[]> langs = restTemplateProvider.getRestTemplate().getForEntity(buildLangsUri(), String[].class);
+            HttpEntity<String[]> langs = restTemplate.getForEntity(buildLangsUri(), String[].class);
             initDirections(langs.getBody());
         } catch (RestClientException e) {
             directions = new HashMap<>();
@@ -65,17 +65,13 @@ public class DictionaryAPI {
     private String resolveCountryName(String entry){
         String code = entry.substring(0, entry.indexOf('-'));
         String language = new Locale(code).getDisplayLanguage();
-       // System.out.println(code + "-" + language);
         return code;
     }
 
     public Optional<String> lookup(String text, String src, String dst) {
         try {
-            RestTemplate restTemplate = restTemplateProvider.getRestTemplate();
-
             HttpEntity<String> response = restTemplate.getForEntity(buildLookupUri(text, src, dst), String.class);
             return Optional.ofNullable(response.getBody());
-
         } catch (RestClientException | JSONException e) {
             e.printStackTrace();
             return Optional.empty();
