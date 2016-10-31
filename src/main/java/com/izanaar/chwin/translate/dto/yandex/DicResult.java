@@ -1,10 +1,9 @@
-package com.izanaar.chwin.dto.translate;
+package com.izanaar.chwin.translate.dto.yandex;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DicResult {
 
-    @JsonProperty("def")
+    /*@JsonProperty("def")*/
     private Definition[] definitions;
 
     public Definition[] getDefinitions() {

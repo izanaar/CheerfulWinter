@@ -1,15 +1,13 @@
-package com.izanaar.chwin.dto.translate;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.izanaar.chwin.translate.dto.yandex;
 
 public class Definition {
 
     private String text;
 
-    @JsonProperty("pos")
+    /*@JsonProperty("pos")*/
     private String position;
 
-    @JsonProperty("tr")
+    /*@JsonProperty("tr")*/
     private TranslationEntry[] translationEntries;
 
     public String getText() {
