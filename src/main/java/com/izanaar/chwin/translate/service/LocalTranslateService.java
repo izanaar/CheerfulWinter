@@ -10,7 +10,9 @@ public class LocalTranslateService implements TranslateService {
     private static final Logger logger = LoggerFactory.getLogger(LocalTranslateService.class);
 
     public Translation translate(TranslateRequest translateRequest) {
-        return null;
+        return new Translation("word '"
+                .concat(translateRequest.getText().concat("' translated from '")
+                .concat(translateRequest.getSrcLang() + "' to '" + translateRequest.getDstLang() + "'")));
     }
 
     @Override
