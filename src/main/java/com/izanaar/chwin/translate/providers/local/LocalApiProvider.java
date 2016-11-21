@@ -6,11 +6,13 @@ import com.izanaar.chwin.translate.dto.Translation;
 import com.izanaar.chwin.translate.exception.TranslateException;
 import com.izanaar.chwin.translate.providers.ApiProvider;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Conditional(value = NoApiProviderCondition.class)
+@Profile("local-api")
 public class LocalApiProvider implements ApiProvider{
+
     @Override
     public ImmutableBiMap<String, String> getAvailableLanguages() {
         return null;
