@@ -1,6 +1,5 @@
 package com.izanaar.chwin.translate.log;
 
-import com.izanaar.chwin.translate.config.TranslateConfig;
 import com.izanaar.chwin.translate.dto.TranslateRequest;
 import com.izanaar.chwin.translate.exception.TranslateException;
 import com.izanaar.chwin.translate.providers.ApiProvider;
@@ -8,21 +7,8 @@ import com.izanaar.chwin.translate.providers.local.LocalApiProvider;
 import com.izanaar.chwin.translate.providers.yandex.YandexApiProvider;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 public class TranslationLogAspectTest {
