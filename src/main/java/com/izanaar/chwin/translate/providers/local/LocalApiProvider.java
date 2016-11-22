@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("local-api")
+@Conditional(value = NoApiProviderCondition.class)
 public class LocalApiProvider implements ApiProvider{
 
     @Override
