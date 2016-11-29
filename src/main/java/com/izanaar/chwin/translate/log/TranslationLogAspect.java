@@ -1,5 +1,6 @@
 package com.izanaar.chwin.translate.log;
 
+import com.izanaar.chwin.translate.dto.TranslateRequest;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,29 +15,31 @@ public class TranslationLogAspect {
 
     private static Logger logger = LoggerFactory.getLogger(TranslationLogAspect.class);
 
-    @Pointcut("execution(* com.izanaar.chwin.translate.providers.ApiProvider.translate(..))")
-    public void translateInterface() {
+    @Pointcut("execution(* com.izanaar.chwin.translate.providers.ApiProvider.translate(com.izanaar.chwin.translate.dto.TranslateRequest)) && args(request)")
+    public void translateInterface(TranslateRequest request) {
     }
 
-    @Pointcut("translateInterface() && !within(com.izanaar.chwin.translate.providers.local.*)")
-    public void translateRemote() {
+    @Pointcut("translateInterface(request) && !within(com.izanaar.chwin.translate.providers.local.*)")
+    public void translateRemote(TranslateRequest request) {
     }
 
-    @Pointcut("translateInterface() && !translateRemote()")
-    public void translateLocal() {
+    @Pointcut("translateInterface(request) && within(com.izanaar.chwin.translate.providers.local.*)")
+    public void translateLocal(TranslateRequest request) {
     }
-
-    @Before("translateLocal()")
-    private void translateLocalBeforeLog() {
+/*
+    @Before("translateLocal(request)")
+    private void translateLocalBeforeLog(TranslateRequest request) {
         logger.debug("Translation through local 'api' has been requested.");
-    }
+    }*/
 
-    @After("translateLocal()")
-    private void translateLocalAfterLog() {
+    @After("translateLocal(request)")
+    private void translateLocalAfterLog(TranslateRequest request) {
         logger.debug("Translation through local 'api' has been completed.");
     }
 
-
-    
+    @Before("translateInterface(request)")
+    private void translateInterfaceBeforeLog(TranslateRequest request){
+        logger.info("ABCDE");
+    }
 
 }

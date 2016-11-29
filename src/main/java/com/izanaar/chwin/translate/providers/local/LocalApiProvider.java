@@ -19,7 +19,7 @@ public class LocalApiProvider implements ApiProvider{
     }
 
     @Override
-    public Translation translate(TranslateRequest translateRequest) throws TranslateException {
+    public Translation translate(TranslateRequest request) throws TranslateException {
         return null;
     }
 }
