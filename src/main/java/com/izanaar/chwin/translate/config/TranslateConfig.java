@@ -13,20 +13,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 public class TranslateConfig {
 
     @Bean
-    TestBean testBean(){
-        return new TestBean();
-    }
-
-    @Bean
     PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-}
-
-
-class TestBean{
-
-    @Value("${ya.dict.key}")
-    String val;
 }

@@ -10,16 +10,21 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Conditional(value = NoApiProviderCondition.class)
-public class LocalApiProvider implements ApiProvider{
+@Profile("local-api")
+public class LocalApiProvider implements ApiProvider {
+
+    private static final ImmutableBiMap<String, String> map = new ImmutableBiMap.Builder<String, String>()
+            .put("ru", "en")
+            .put("en", "ru")
+            .build();
 
     @Override
     public ImmutableBiMap<String, String> getAvailableLanguages() {
-        return null;
+        return map;
     }
 
     @Override
     public Translation translate(TranslateRequest request) throws TranslateException {
-        return null;
+        return new Translation(request.getText() + " from " + request.getSrcLang() + " to " + request.getDstLang());
     }
 }
