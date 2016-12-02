@@ -31,7 +31,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-webmvc</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>

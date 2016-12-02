@@ -4,10 +4,11 @@ import com.izanaar.chwin.translate.dto.TranslateRequest;
 import com.izanaar.chwin.translate.exception.TranslateException;
 import com.izanaar.chwin.translate.providers.ApiProvider;
 import com.izanaar.chwin.translate.providers.local.LocalApiProvider;
-import com.izanaar.chwin.translate.providers.yandex.YandexApiProvider;
+import com.izanaar.chwin.translate.providers.yandex.YaApiProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
+import org.springframework.web.client.RestTemplate;
 
 import static org.mockito.Mockito.mock;
 
@@ -25,7 +26,7 @@ public class TranslationLogAspectTest {
         factory.addAspect(logAspect);
         localApiProvider = factory.getProxy();
 
-        factory = new AspectJProxyFactory(new YandexApiProvider());
+        factory = new AspectJProxyFactory(new YaApiProvider(mock(RestTemplate.class)));
         factory.addAspect(logAspect);
         yandexApiProvider = factory.getProxy();
     }
