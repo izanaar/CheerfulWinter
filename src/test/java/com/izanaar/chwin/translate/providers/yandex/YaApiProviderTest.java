@@ -24,7 +24,9 @@ public class YaApiProviderTest {
 
     @Test
     public void translate() throws Exception {
-
+        String lang = "ru-en";
+        System.out.println(lang.substring(0, lang.indexOf('-')));
+        System.out.println(lang.substring(lang.indexOf('-') + 1));
     }
 
 }

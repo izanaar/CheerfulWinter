@@ -11,15 +11,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class YaApiProvider implements ApiProvider {
 
     @Value("${ya.dict.key}")
     private String apiKey;
+
+    private static final String API_URI = "https://dictionary.yandex.net/api/v1/dicservice.json";
 
     private RestTemplate template;
     private ImmutableBiMap<String, String> langs;
@@ -34,17 +39,17 @@ public class YaApiProvider implements ApiProvider {
     }
 
     private ImmutableBiMap<String, String> loadLangs(){
-        Map<String, String> params = Collections.singletonMap("key", "dict.1.1.20160406T161823Z.8d8d9df526a6d285.38f5076e5cbdffbc2fde0dd7a7fceccd1250778a");
-        String url = "https://dictionary.yandex.net/api/v1/dicservice.json/getLangs";
+        final String METHOD_URI = "/getLangs";
         List<String> langs = new ArrayList<>();
         try {
-            langs = template.getForObject(url, langs.getClass());
-            System.out.println(langs);
+            langs = template.getForObject(API_URI.concat(METHOD_URI), langs.getClass());//TODO cleanup!
+            final ImmutableBiMap.Builder<String, String> builder = new ImmutableBiMap.Builder<>();
+            langs.forEach(lang -> builder.put(lang.substring(0, lang.indexOf('-')), lang.substring(lang.indexOf('-') + 1)));
+            this.langs = builder.build();
         } catch (RestClientException e) {
             e.printStackTrace();
         }
-
-        return null;
+        return this.langs;
     }
 
     @Override
