@@ -5,9 +5,12 @@ import com.izanaar.chwin.translate.dto.TranslateRequest;
 import com.izanaar.chwin.translate.dto.Translation;
 import com.izanaar.chwin.translate.exception.TranslateException;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ApiProvider {
 
-    ImmutableBiMap<String, String> getAvailableLanguages();
+    Map<String, List<String>> getAvailableLanguages();
 
     Translation translate(TranslateRequest translateRequest) throws TranslateException;
 

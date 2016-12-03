@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.junit.Assert.assertNotNull;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = YaProviderConfig.class)
 @TestPropertySource("file:/opt/prop/chwin.properties")
@@ -19,7 +21,7 @@ public class YaApiProviderTest {
 
     @Test
     public void getAvailableLanguages() throws Exception {
-        apiProvider.getAvailableLanguages();
+        assertNotNull(apiProvider.getAvailableLanguages());
     }
 
     @Test

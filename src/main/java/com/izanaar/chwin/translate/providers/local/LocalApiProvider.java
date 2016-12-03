@@ -9,17 +9,26 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 @Profile("local-api")
 public class LocalApiProvider implements ApiProvider {
 
-    private static final ImmutableBiMap<String, String> map = new ImmutableBiMap.Builder<String, String>()
-            .put("ru", "en")
-            .put("en", "ru")
-            .build();
+    private static Map<String, List<String>> map;
 
     @Override
-    public ImmutableBiMap<String, String> getAvailableLanguages() {
+    public Map<String, List<String>> getAvailableLanguages() {
+        return map != null ? map : initMap();
+    }
+
+    private Map<String, List<String>> initMap() {
+        map = new HashMap<>();
+        map.put("en", Collections.singletonList("ru"));
+        map.put("ru", Collections.singletonList("en"));
         return map;
     }
 
