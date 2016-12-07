@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan(basePackageClasses = {ApiProvider.class, TranslationLogAspect.class})
 @PropertySource("file:/opt/prop/chwin.properties")
 @EnableAspectJAutoProxy
-public class TranslateConfig {
+public class RootConfig {
 
     @Bean
     PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
