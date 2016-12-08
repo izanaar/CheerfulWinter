@@ -7,7 +7,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.client.RestTemplate;
 
-//@Configuration
+@Configuration
 @ComponentScan(basePackageClasses = {ApiProvider.class, TranslationLogAspect.class})
 @PropertySource("file:/opt/prop/chwin.properties")
 @EnableAspectJAutoProxy

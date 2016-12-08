@@ -33,8 +33,8 @@ public class YaApiProvider implements ApiProvider {
         this.template = template;
     }
 
-    @Override
-    public ImmutableBiMap<String, String> getAvailableLanguages() {
+    /*@Override
+    public IMap<String, String> getAvailableLanguages() {
         return langs != null ? langs : loadLangs();
     }
 
@@ -50,6 +50,11 @@ public class YaApiProvider implements ApiProvider {
             e.printStackTrace();
         }
         return this.langs;
+    }*/
+
+    @Override
+    public Map<String, List<String>> getAvailableLanguages() {
+        return null;
     }
 
     @Override
